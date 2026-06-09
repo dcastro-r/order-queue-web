@@ -34,7 +34,7 @@ Reducir la incertidumbre durante la espera y mejorar la experiencia del cliente 
 
 ---
 
-## 👥 Equipo de Desarrollo
+## Equipo de Desarrollo
 
 - Diego Castro Reyes
 - Dilmer Paz Carrillos
