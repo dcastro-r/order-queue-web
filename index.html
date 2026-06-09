@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>KFC - Seguimiento de pedidos</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700;800&amp;family=Hanken+Grotesk:wght@400;500;700&amp;display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+
+    <link href="css/styles.css" rel="stylesheet">
+
+    <link href="css/styles.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1b1b1b",
+                        "secondary-container": "#e2e2e2",
+                        "outline-variant": "#e8bcb9",
+                        "background": "#f9f9f9",
+                        "primary-fixed": "#ffdad7",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-surface-variant": "#5e3f3d",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#930018",
+                        "surface-dim": "#dadada",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "tertiary": "#58595a",
+                        "on-tertiary-container": "#f8f8f8",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "tertiary-container": "#707272",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-primary-container": "#fff6f5",
+                        "inverse-primary": "#ffb3af",
+                        "on-primary-fixed": "#410005",
+                        "on-surface": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f3f3f4",
+                        "outline": "#936e6c",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#ffb3af",
+                        "error": "#ba1a1a",
+                        "primary-container": "#e4002b",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "surface": "#f9f9f9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#646464",
+                        "surface-tint": "#bf0022",
+                        "surface-container": "#eeeeee",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f1",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-variant": "#e2e2e2",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "primary": "#b60020",
+                        "secondary": "#5e5e5e",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "inverse-surface": "#2f3131"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "24px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Archivo Narrow"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-lg": ["Archivo Narrow"],
+                        "display": ["Archivo Narrow"],
+                        "label-bold": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Archivo Narrow"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-bold": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-surface border-b-4 border-primary w-full h-20 shadow-sm">
+        <div class="max-w-7xl mx-auto px-margin-desktop h-full flex justify-between items-center">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-2">
+                    <img alt="KFC" class="h-10 w-auto"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRBtYii-S3WbOKi02TaoPmgaJ0TsdwY7JdzSGkyo1-hhJIcZxZOTaiYqOYmh7_tcsWVTfVP-nOfpUV2zt_vgBC-bboWV9_0R8ZeWptrQWzdlrbEZ5jwLFwILz6qn28OBA8_k3PoHnsw1Bx8M6-jZmeLPW9N0gBBg-IG4ImZdUp5-RWLtGz-SFILqgWRfMi-DGFrhOkGV6ZpG9e62PfirX3N0WvQAbQSmm0n1tNsX6Lnt8FgSWoHsWtmMf3L67DI9RiJvkxU00Xgrc">
+                    <span class="font-display text-display text-primary tracking-tighter text-[32px]">KFC</span>
+                </div>
+                <nav class="hidden md:flex gap-6">
+                    <a class="font-label-bold text-on-surface hover:text-primary uppercase tracking-wider transition-colors"
+                        href="#">Menú</a>
+                    <a class="font-label-bold text-on-surface hover:text-primary uppercase tracking-wider transition-colors"
+                        href="#">Promociones</a>
+                    <a class="font-label-bold text-on-surface hover:text-primary uppercase tracking-wider transition-colors"
+                        href="#">Ubicaciones</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="material-symbols-outlined text-primary hover:bg-surface-variant transition-colors p-2 rounded-full active:scale-95"
+                    onclick="location.reload()">refresh</button>
+                <button
+                    class="hidden md:block bg-on-surface text-white px-6 py-2 font-label-bold uppercase tracking-widest text-sm hover:bg-opacity-90">Mi
+                    Cuenta</button>
+            </div>
+        </div>
+    </header>
+    <main class="flex-1 max-w-7xl mx-auto w-full px-margin-desktop py-stack-lg">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <!-- Estado de orden - seguimiento -->
+            <div class="lg:col-span-7 flex flex-col gap-stack-lg" id="tracking-container">
+                <section class="flex flex-col" id="hero-section">
+                    <h1 class="font-headline-lg text-headline-lg uppercase mb-2 leading-tight text-green-600"
+                        id="status-title">✅ ¡Tu pedido está listo para recoger!</h1>
+                    <button class="flex justify-center w-full">
+                        <div
+                            class="bg-surface-container-low border border-secondary-container p-6 w-fit mb-stack-md rounded-none">
+                            <span
+                                class="font-label-bold text-label-bold text-secondary uppercase tracking-widest block mb-1">Orden
+                                N°:</span>
+                            <span class="font-display text-display text-on-surface text-4xl">#KFC-8743</span>
+                        </div>
+                    </button>
+                </section>
+                <!-- Tiempo y cola visualización -->
+                <div
+                    class="bg-white border border-secondary-container p-stack-lg flex flex-col items-center justify-center text-center shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                    <div class="flex items-center gap-6 mb-stack-md">
+                        <span
+                            class="material-symbols-outlined text-primary text-[64px] animate-pulse-slow">schedule</span>
+                        <span
+                            class="font-display text-[80px] md:text-[96px] leading-none text-on-surface text-green-600"
+                            id="timer-display">¡LISTO!</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <p class="font-headline-md text-headline-md text-on-surface" id="queue-status">Dirígete al
+                            mostrador #1</p>
+                        <p class="font-label-bold text-label-bold text-secondary uppercase mt-2" id="queue-subtext">
+                            Presenta tu número de orden #KFC-8743</p>
+                    </div>
+                    <!-- Progress Bar Section -->
+                    <div class="w-full mt-stack-lg max-w-md">
+                        <div class="w-full h-4 bg-secondary-container relative overflow-hidden">
+                            <div class="h-full bg-green-600 transition-all duration-1000" id="progress-fill"
+                                style="width: 100%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-3">
+                            <span
+                                class="font-label-bold text-[10px] text-secondary uppercase tracking-widest">Recibido</span>
+                            <span
+                                class="font-label-bold text-[10px] text-primary uppercase tracking-widest">Preparando</span>
+                            <span
+                                class="font-label-bold text-[10px] text-secondary uppercase tracking-widest">Listo</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Botón de acción -->
+                <div class="flex flex-col gap-4">
+                    <button
+                        class="w-full bg-primary text-on-primary py-5 font-headline-md text-headline-md uppercase flex items-center justify-center gap-3 active:scale-[0.98] transition-all hover:bg-opacity-90 shadow-lg"
+                        onclick="location.reload()">
+                        <span class="material-symbols-outlined text-2xl">refresh</span>
+                        Actualizar estado en tiempo real
+                    </button>
+                    <p class="text-center text-secondary font-label-sm uppercase tracking-tighter">La página se
+                        actualizá automáticamente cada 30 segundos</p>
+                </div>
+            </div>
+            <!-- Imágen y seguimiento de orden DERECHA -->
+            <div class="lg:col-span-5 flex flex-col gap-stack-md">
+                <!-- Comida Visual -->
+                <div
+                    class="w-full aspect-[4/3] bg-secondary-container overflow-hidden border-2 border-secondary-container group">
+                    <img alt="KFC Fried Chicken"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIaCc7sGO_bWrbLoTewJRRmvXfs_qKa_RF_pnmH2QJ4OZqDEl2tzHO31gUdbfzuXQXGdMODIRYBpTZ-WkWOn-5k6e65MZQmEey-4l5wNQJBdsS1pWyuqdVdRMpvmtvLMpW9uVMG6usgZUTNWLkKutx-xwnHhiAPmJ4yM_GxIbLYJtvKLx0TmqJ-4dvtcEXoTwt_HqdFjUpnV4MvdBGoRma2yPCOnB0C8UrUy0LpFlxEJ4UQLWuOI3ebNpXcCrX2qejCZ2DJdGxKKI">
+                </div>
+                <!-- Orden Detalles -->
+                <div class="bg-white border border-secondary-container shadow-sm overflow-hidden">
+                    <div class="bg-surface-container-highest px-6 py-4 border-b border-secondary-container">
+                        <h3 class="font-headline-md text-headline-md uppercase">Detalles del Pedido</h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex justify-between items-start">
+                                <div>
+                                    <span class="font-label-bold block uppercase">1x Mega Bucket 10 Piezas</span>
+                                    <span class="text-secondary text-sm">Receta Secreta, 2 Purés familiares</span>
+                                </div>
+                                <span class="font-label-bold">S/80.00</span>
+                            </li>
+                            <li class="flex justify-between items-start">
+                                <div>
+                                    <span class="font-label-bold block uppercase">2x Bisquets Originales</span>
+                                </div>
+                                <span class="font-label-bold">S/30.00</span>
+                            </li>
+                        </ul>
+                        <hr class="my-6 border-dashed border-secondary-container">
+                        <div class="flex justify-between items-center">
+                            <span class="font-display text-2xl uppercase">Total</span>
+                            <span class="font-display text-3xl text-primary">S/110.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-on-surface text-white p-6 flex items-start gap-4">
+                    <span class="material-symbols-outlined text-primary">location_on</span>
+                    <div>
+                        <h4 class="font-label-bold uppercase mb-1">Punto de Recogida</h4>
+                        <p class="text-sm opacity-80">Patio de Comidas del Mall Plaza</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer del Escritorio -->
+    <footer class="bg-on-surface text-white mt-stack-lg border-t-8 border-primary">
+        <div class="max-w-7xl mx-auto px-margin-desktop py-stack-lg">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-1">
+                    <div class="flex items-center gap-2 mb-6 grayscale invert">
+                        <img alt="KFC" class="h-8 w-auto"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpmV5S0Vps95FBvMWRB84-szSiK57Q0QIc6NeNcld3sAIDBZ9mTi5ydrl6deK0czGDXVyAU1vpc4b1-Aj3kelr700D2O2fc6rzNHCQHUQOwswS4uvgkOyEFL8IkDxBf8lU2KbTdXFqNqBqQYCPtr8bd46xuX140egw-JVKrojNDhtcQd3jiStkGWKffVmNrJkhdm-uRW4Xsi_yLFryk4odNZgj9xpUPBnmYtEL2ufi-RrrkppVpkq96R73yY7Aw7-LYOAgz4MMiIw">
+                        <span class="font-display text-2xl tracking-tighter">KFC</span>
+                    </div>
+                    <p class="text-sm opacity-60 leading-relaxed">
+                        © 2026 KFC International Holding, Inc. Todos los derechos reservados.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-label-bold uppercase mb-6 tracking-widest text-primary">Legal</h5>
+                    <ul class="space-y-3 text-sm opacity-80">
+                        <li class=""><a class="hover:text-primary transition-colors" href="#">Términos y Condiciones</a>
+                        </li>
+                        <li class=""><a class="hover:text-primary transition-colors" href="#">Aviso de Privacidad</a>
+                        </li>
+                        <li class=""><a class="hover:text-primary transition-colors" href="#">Políticas de Cookies</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-label-bold uppercase mb-6 tracking-widest text-primary">Atención</h5>
+                    <ul class="space-y-3 text-sm opacity-80">
+                        <li class=""><a class="hover:text-primary transition-colors" href="#">Preguntas Frecuentes</a>
+                        </li>
+                        <li class=""><a class="hover:text-primary transition-colors" href="#">Contáctanos</a>#</li>
+
+                        <li class=""><a class="hover:text-primary transition-colors" href="#">Facturación</a>#</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-label-bold uppercase mb-6 tracking-widest text-primary">Síguenos</h5>
+                    <div class="flex gap-4">
+                        <a class="bg-secondary-container bg-opacity-20 p-2 rounded-full hover:bg-primary transition-colors"
+                            href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a class="bg-secondary-container bg-opacity-20 p-2 rounded-full hover:bg-primary transition-colors"
+                            href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a class="bg-secondary-container bg-opacity-20 p-2 rounded-full hover:bg-primary transition-colors"
+                            href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.051 1.047 20.383.63 19.59.33c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
